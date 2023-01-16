@@ -91,7 +91,7 @@ pip install -r requirements.txt
 
 Don't forget to download the two model [vgg16-397923af.pth](https://download.pytorch.org/models/vgg16-397923af.pth) for vgg16 and [vgg16_bn-6c64b313.pth](https://download.pytorch.org/models/vgg16_bn-6c64b313.pth) for vgg16_bn and save them in the directory `models` as the following figure shows.
 
-![](./screenshots/two_models.png)
+<img src="./screenshots/two_models.png" width="1000"/>
 
 ## Organize the counting dataset
 
@@ -105,7 +105,9 @@ train/scene02/img01.jpg train/scene02/img01.txt
 
 We provide a simple python scripty `convert_mat_to_txt.py`  to help with the task.
 
-![](./screenshots/generate_list.png)
+<img src="./screenshots/generate_list.png" width="1000"/>
+
+
 
 ### Dataset structures:
 
@@ -134,7 +136,7 @@ x2 y2
 
 For most dataset including ShanghaiTech Part A, they use `mat` files to store annotations for images. We provide a simple python scripty `convert_mat_to_txt.py`  to help with the task.
 
-![](./screenshots/convert_mat_to_txt.png)
+<img src="./screenshots/convert_mat_to_txt.png" width="1000"/>
 
 
 
@@ -183,7 +185,7 @@ For Win10 users, run the following commands at the main directory of the project
 python run_test.py --weight_path ./weights/SHTechA.pth --output_dir ./logs/
 ```
 
-![](./logs/pred1248.jpg)
+<img src="./logs/pred1248.jpg" width="1000"/>
 
 
 ## Citing P2PNet
