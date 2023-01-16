@@ -1,4 +1,4 @@
-# Crowed Counting System for Computer Vision Fall 2022 Final Project P2PNet 
+# Crowd Counting System for Computer Vision Fall 2022 Final Project P2PNet 
 
 This repository contains codes for the official implementation in PyTorch of **P2PNet** as described in [Rethinking Counting and Localization in Crowds: A Purely Point-Based Framework](https://arxiv.org/abs/2107.12746).
 
