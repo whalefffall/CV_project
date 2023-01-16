@@ -207,7 +207,7 @@ def main(args):
 
             # save the best model since begining
             if abs(np.min(mae) - result[0]) < 0.01:
-                checkpoint_best_path = os.path.join(args.checkpoints_dir, f'best_mae_{abs(np.min(mae) - result[0])}.pth')
+                checkpoint_best_path = os.path.join(args.checkpoints_dir, 'best_mae.pth')
                 torch.save({
                     'model': model_without_ddp.state_dict(),
                 }, checkpoint_best_path)

@@ -49,4 +49,6 @@ print("finishes!")
 
 '''
 python train.py --data_root ./dataset/data/ --dataset_file SHHA  --epochs 3500  --lr_drop 3500  --output_dir ./logs  --checkpoints_dir ./weights  --tensorboard_dir ./logs  --lr 0.0001  --lr_backbone 0.00001  --batch_size 8  --eval_freq 1  --gpu_id 0
+
+python train.py --data_root ./dataset/data/ --dataset_file SHHA  --epochs 3500  --lr_drop 3500  --output_dir ./logs  --checkpoints_dir ./weights  --tensorboard_dir ./logs  --lr 0.0001  --lr_backbone 0.00001  --batch_size 8  --eval_freq 1  --gpu_id 0 --resume ./weights/latest.pth --start_epoch 5
 '''

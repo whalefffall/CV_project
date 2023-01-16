@@ -54,7 +54,7 @@ class SHHA(Dataset):
         gt_path = self.img_map[img_path]
         # load image and ground truth
         img, point = load_data((img_path, gt_path), self.train)
-        # applu augumentation
+        # apply augumentation
         if self.transform is not None:
             img = self.transform(img)
 

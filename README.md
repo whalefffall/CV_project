@@ -1,10 +1,8 @@
-# P2PNet (ICCV2021 Oral Presentation)
+# Crowed Counting System for Computer Vision Fall 2022 Final Project P2PNet 
 
 This repository contains codes for the official implementation in PyTorch of **P2PNet** as described in [Rethinking Counting and Localization in Crowds: A Purely Point-Based Framework](https://arxiv.org/abs/2107.12746).
- 
-A brief introduction of P2PNet can be found at [机器之心 (almosthuman)](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650827826&idx=3&sn=edd3d66444130fb34a59d08fab618a9e&chksm=84e5a84cb392215a005a3b3424f20a9d24dc525dcd933960035bf4b6aa740191b5ecb2b7b161&mpshare=1&scene=1&srcid=1004YEOC7HC9daYRYeUio7Xn&sharer_sharetime=1633675738338&sharer_shareid=7d375dccd3b2f9eec5f8b27ee7c04883&version=3.1.16.5505&platform=win#rd).
 
-The codes is tested with PyTorch 1.5.0. It may not run with other versions.
+A brief introduction of P2PNet can be found at [机器之心 (almosthuman)](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650827826&idx=3&sn=edd3d66444130fb34a59d08fab618a9e&chksm=84e5a84cb392215a005a3b3424f20a9d24dc525dcd933960035bf4b6aa740191b5ecb2b7b161&mpshare=1&scene=1&srcid=1004YEOC7HC9daYRYeUio7Xn&sharer_sharetime=1633675738338&sharer_shareid=7d375dccd3b2f9eec5f8b27ee7c04883&version=3.1.16.5505&platform=win#rd).
 
 ## Visualized demos for P2PNet
 <img src="vis/congested1.png" width="1000"/>   
@@ -33,7 +31,7 @@ ASNet   | CVPR'20 | 57.78/<u>90.13</u> | -/- | <u>174.84</u>/<u>251.63</u> | 91.
 AMRNet  | ECCV'20 | 61.59/98.36 | 7.02/11.00 | 184.0/265.8 | 86.6/152.2 |
 AMSNet  | ECCV'20 | 56.7/93.4 | 6.7/10.2 | 208.4/297.3 | 101.8/163.2|
 DM-Count  | NeurIPS'20 | 59.7/95.7 | 7.4/11.8 | 211.0/291.5 | 85.6/<u>148.3</u>|
-**Ours** |- | **52.74**/**85.06** | **6.25**/**9.9** | **172.72**/256.18 | <u>85.32</u>/154.5 |
+**P2PNet** |- | **52.74**/**85.06** | **6.25**/**9.9** | **172.72**/256.18 | <u>85.32</u>/154.5 |
 
 Comparison on the [NWPU-Crowd](https://www.crowdbenchmark.com/resultdetail.html?rid=81) dataset.
 
@@ -47,7 +45,7 @@ CANNet  | 110.0 | 495.3 | 102.3 | 718.3|
 Bayesian+  | 105.4 | 454.2 | 115.8 | 750.5 |
 S-DCNet   | 90.2 | 370.5 | **82.9** | 567.8 |
 DM-Count  | <u>88.4</u> | 388.6 | 88.0 | **498.0** |
-**Ours** | **77.44**|**362** | <u>83.28</u>| 553.92 |
+**P2PNet** | **77.44**|**362** | <u>83.28</u>| 553.92 |
 
 The overall performance for both counting and localization.
 
@@ -69,17 +67,34 @@ Crowd-SDNet |  0.637  | 0.651  | 0.624  |
 PDRNet |  0.653 | 0.675  | 0.633  |
 TopoCount | 0.692  | 0.683  | **0.701** |
 D2CNet | <u>0.700</u> | **0.741**  | 0.662 |
-**Ours** |**0.712** | <u>0.729</u>  | <u>0.695</u> |
+**P2PNet** |**0.712** | <u>0.729</u>  | <u>0.695</u> |
 
 ## Installation
 * Clone this repo into a directory named P2PNET_ROOT
 * Organize your datasets as required
 * Install Python dependencies. We use python 3.6.5 and pytorch 1.5.0
+* Install feature map extraction models
+
+You can use the `cvproj.yaml` file to set up your `conda` environment. All packages of my virtual environment are listed in `packages.txt`.
+
+```
+conda env create -f cvproj.yaml
+```
+
+Or you can install the dependencies with `pip`.
+
 ```
 pip install -r requirements.txt
 ```
 
+
+
+Don't forget to download the two model [vgg16-397923af.pth](https://download.pytorch.org/models/vgg16-397923af.pth) for vgg16 and [vgg16_bn-6c64b313.pth](https://download.pytorch.org/models/vgg16_bn-6c64b313.pth) for vgg16_bn and save them in the directory `models` as the following figure shows.
+
+![](./screenshots/two_models.png)
+
 ## Organize the counting dataset
+
 We use a list file to collect all the images and their ground truth annotations in a counting dataset. When your dataset is organized as recommended in the following, the format of this list file is defined as:
 ```
 train/scene01/img01.jpg train/scene01/img01.txt
@@ -88,7 +103,12 @@ train/scene01/img02.jpg train/scene01/img02.txt
 train/scene02/img01.jpg train/scene02/img01.txt
 ```
 
+We provide a simple python scripty `convert_mat_to_txt.py`  to help with the task.
+
+![](./screenshots/generate_list.png)
+
 ### Dataset structures:
+
 ```
 DATA_ROOT/
         |->train/
@@ -112,9 +132,15 @@ x2 y2
 ...
 ```
 
+For most dataset including ShanghaiTech Part A, they use `mat` files to store annotations for images. We provide a simple python scripty `convert_mat_to_txt.py`  to help with the task.
+
+![](./screenshots/convert_mat_to_txt.png)
+
+
+
 ## Training
 
-The network can be trained using the `train.py` script. For training on SHTechPartA, use
+The network can be trained using the `train.py` script. For training a brand-new model on SHTechPartA, Linux users use the following command in the main directory.
 
 ```
 CUDA_VISIBLE_DEVICES=0 python train.py --data_root $DATA_ROOT \
@@ -130,7 +156,19 @@ CUDA_VISIBLE_DEVICES=0 python train.py --data_root $DATA_ROOT \
     --eval_freq 1 \
     --gpu_id 0
 ```
+For Windows user, ignore `CUDA_VISIBLE_DEVICES=0`  or preset it in the environment.
+
 By default, a periodic evaluation will be conducted on the validation set.
+
+
+
+To continue training from existing model, you can use the command in the main directory.
+
+```
+python train.py --data_root ./dataset/data/ --dataset_file SHHA  --epochs 3500  --lr_drop 3500  --output_dir ./logs  --checkpoints_dir ./weights  --tensorboard_dir ./logs  --lr 0.0001  --lr_backbone 0.00001  --batch_size 8  --eval_freq 1  --gpu_id 0 --resume $EXISTING_MODEL_PATH$
+```
+
+
 
 ## Testing
 
@@ -145,10 +183,7 @@ For Win10 users, run the following commands at the main directory of the project
 python run_test.py --weight_path ./weights/SHTechA.pth --output_dir ./logs/
 ```
 
-## Acknowledgements
-
-- Part of codes are borrowed from the [C^3 Framework](https://github.com/gjy3035/C-3-Framework).
-- We refer to [DETR](https://github.com/facebookresearch/detr) to implement our matching strategy.
+![](./logs/pred1248.jpg)
 
 
 ## Citing P2PNet
