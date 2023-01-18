@@ -5,7 +5,8 @@ This repository contains codes for the official implementation in PyTorch of **P
 A brief introduction of P2PNet can be found at [机器之心 (almosthuman)](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650827826&idx=3&sn=edd3d66444130fb34a59d08fab618a9e&chksm=84e5a84cb392215a005a3b3424f20a9d24dc525dcd933960035bf4b6aa740191b5ecb2b7b161&mpshare=1&scene=1&srcid=1004YEOC7HC9daYRYeUio7Xn&sharer_sharetime=1633675738338&sharer_shareid=7d375dccd3b2f9eec5f8b27ee7c04883&version=3.1.16.5505&platform=win#rd).
 
 ## Visualized demos for P2PNet
-![image](vis/congested1.png)
+
+
 <img src="https://raw.githubusercontent.com/whalefffall/CV_project/main/vis/congested1.png" width="1000"/>   
 <img src="vis/congested2.png" width="1000"/> 
 <img src="vis/congested3.png" width="1000"/> 
